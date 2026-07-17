@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wii!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <video autoplay loop muted playsinline id="bg-video">
+        <source src="fondo.mp4" type="video/mp4">
+        Tu navegador no soporta videos de fondo.
+    </video>
+
+    <audio id="background-music"></audio>
+
+    <div id="audio-indicator" class="audio-banner">
+        <span class="speaker-icon">🔊</span> Toca la pantalla para activar la música
+    </div>
+
+    <div class="card-container">
+        <h1 id="title">.O 🎉</h1>
+
+        <div id="countdown" class="countdown-grid">
+            <div class="time-block">
+                <span id="days">00</span>
+                <p>Días</p>
+            </div>
+            <div class="time-block">
+                <span id="hours">00</span>
+                <p>Horas</p>
+            </div>
+            <div class="time-block">
+                <span id="minutes">00</span>
+                <p>Minutos</p>
+            </div>
+            <div class="time-block">
+                <span id="seconds">00</span>
+                <p>Segundos</p>
+            </div>
+        </div>
+
+        <div id="magic-container" class="hidden">
+            <div class="buttons-wrapper">
+                <a href="TU_LINK_DE_LA_CARTA" target="_blank" class="magic-button">
+                    ✉️ Cartita
+                </a>
+                <a href="TU_LINK_DE_LOS_RECUERDOS" target="_blank" class="magic-button alt-button">
+                    📸 Recuerdos kuls
+                </a>
+            </div>
+        </div>
+
+        <div class="music-player-widget">
+            <div class="music-icon">🎵</div>
+            <div class="track-info-container">
+                <div id="track-title" class="track-title-scroll">Cargando canción...</div>
+            </div>
+        </div>
+
+        <div id="next-track-container" class="next-track-info">
+            Siguiente: <span id="next-track-title">Calculando...</span>
+        </div>
+
+    <div id="balloon-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

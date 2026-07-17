@@ -1,0 +1,318 @@
+/* Variables para personalizar fácilmente */
+:root {
+    --bg-color: #121214; /* Color de fondo base detrás del video */
+    --accent-color: #ff477e; /* Color rosa/fucsia para el contador y botón */
+    --text-color: #ffffff;
+    --card-bg: rgba(18, 18, 20, 0.75); /* Tarjeta oscura translúcida para contrastar sobre el video */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Video de fondo a pantalla completa */
+#bg-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1; /* Forzado al fondo absoluto */
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    opacity: 0.85; /* Controla qué tan brillante es el video sobre el fondo negro */
+    pointer-events: none; /* Asegura que no interfiera con los clics del usuario */
+}
+
+/* Tarjeta contenedora por encima del video */
+.card-container {
+    position: relative;
+    z-index: 10; /* Capa superior sobre el video */
+    text-align: center;
+    background: var(--card-bg);
+    padding: 3rem;
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 600px;
+    width: 90%;
+    transition: all 0.8s ease-in-out;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Reloj Minimalista */
+.countdown-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+    transition: opacity 0.5s ease;
+}
+
+.time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-block span {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.time-block p {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+/* Utilidades para ocultar/mostrar */
+.hidden {
+    display: none !important;
+}
+
+/* Contenedor de los dos botones */
+.buttons-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Separación entre los botones */
+    flex-wrap: wrap; /* Si la pantalla es chica, se acomodan uno abajo del otro */
+    margin-top: 1rem;
+}
+
+/* Botón base (Carta) */
+.magic-button {
+    display: inline-block;
+    padding: 15px 40px;
+    background: linear-gradient(45deg, var(--accent-color), #ff7096);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    box-shadow: 0 0 20px rgba(255, 71, 126, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: bounceIn 1s forwards;
+    min-width: 180px; /* Asegura que ambos tengan un tamaño similar */
+    text-align: center;
+}
+
+/* Segundo botón con un tono de color diferente (Recuerdos) */
+.magic-button.alt-button {
+    background: linear-gradient(45deg, #48cae4, #90e0ef);
+    box-shadow: 0 0 20px rgba(72, 202, 228, 0.4);
+}
+
+/* Efectos de hover para ambos */
+.magic-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 71, 126, 0.8);
+}
+
+.magic-button.alt-button:hover {
+    box-shadow: 0 0 30px rgba(72, 202, 228, 0.8);
+}
+
+/* Animación de entrada de los botones */
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    70% { transform: scale(0.9); opacity: 0.9; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Globos flotantes */
+#balloon-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none; /* No bloquea clics */
+    z-index: 5; /* Por encima del video, por debajo de la tarjeta */
+}
+
+.balloon {
+    position: absolute;
+    bottom: -100px;
+    width: 40px;
+    height: 50px;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    animation: flyUp 6s linear forwards;
+}
+
+.balloon::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 18px;
+    width: 4px;
+    height: 8px;
+    background-color: inherit;
+    clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+}
+
+@keyframes flyUp {
+    0% {
+        bottom: -100px;
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        bottom: 110vh;
+        transform: translateX(50px) rotate(15deg);
+        opacity: 0;
+    }
+}
+
+/* Indicador flotante de audio */
+.audio-banner {
+    position: fixed;
+    top: 20px;
+    background: rgba(18, 18, 20, 0.85);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 100; /* Asegura que esté por encima de todo */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Animación de latido para el icono del parlante */
+.speaker-icon {
+    display: inline-block;
+    animation: pulseIcon 1.5s infinite ease-in-out;
+}
+
+@keyframes pulseIcon {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Clase para desvanecer el banner de audio cuando ya se hizo clic */
+.audio-banner.fade-out {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+}
+
+/* Contenedor global de partículas (para que no bloqueen los clics) */
+.sparkle-particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    pointer-events: none; /* Crucial para que no interfieran con los botones */
+    z-index: 9999; /* Siempre por encima de todo */
+    animation: shootSparkle 0.8s ease-out forwards;
+}
+
+/* Animación de dispersión y desvanecimiento */
+@keyframes shootSparkle {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        /* Las variables --tx y --ty se calcularán dinámicamente en JS para dar direcciones aleatorias */
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Widget del reproductor de música (Ajustado para que no sobre espacio de más) */
+.music-player-widget {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 15px;
+    border-radius: 30px;
+    margin: 1.5rem auto 0.5rem auto; /* Centrado y con márgenes más ajustados */
+    gap: 12px;
+    overflow: hidden;
+    max-width: 280px; /* Ancho máximo reducido para evitar espacios vacíos gigantes */
+    width: 100%;
+}
+
+.music-icon {
+    font-size: 1rem;
+    animation: bounceIcon 2s infinite ease-in-out;
+}
+
+/* Contenedor del título con ancho fijo para que actúe de máscara */
+.track-info-container {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+}
+
+/* Efecto Marquee (Texto en movimiento) */
+.track-title-scroll {
+    display: inline-block;
+    font-size: 0.8rem; /* Un poco más pequeña y sutil */
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding-left: 100%;
+    animation: marquee 12s linear infinite; /* Un poco más rápido al ser más corto el ancho */
+    opacity: 0.9;
+}
+
+/* Estilos para el aviso de Siguiente Canción */
+.next-track-info {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 5px;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+    text-align: center;
+}
+
+#next-track-title {
+    color: var(--accent-color); /* Resalta el título con el color principal */
+    font-weight: 500;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-100%, 0, 0); /* Lo desplaza por completo hacia la izquierda */
+    }
+}
