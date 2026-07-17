@@ -1,18 +1,16 @@
 // CONFIGURACIÓN
-const TEST_MODE = false; // ¡Cambiado a false para activar la cuenta regresiva real!
+const TEST_MODE = false; 
 const TEST_SECONDS = 10; 
 
-// Fecha real del evento: 00:00:00 en zona horaria GMT-5 (Hora de Perú/Colombia/Ecuador)
-// Formato ISO 8601 con el desplazamiento "-05:00" para asegurar la sincronía exacta.
+
 const REAL_TARGET_DATE = new Date("2026-07-18T00:00:00-05:00").getTime();
 
-// Playlist original (Pon aquí tus archivos .mp3, nombres y duraciones exactas en segundos)
 const ORIGINAL_PLAYLIST = [
    { src: "cancion1.mp3", title: "Majiko - Avenir", duration: 211 }, 
     { src: "cancion2.mp3", title: "Trigger - Places", duration: 261 }, 
     { src: "cancion3.mp3", title: "DiverDiva - Shadow Effect", duration: 236 },
 { src: "cancion4.mp3", title: "Liella! - ビタミンSUMMER", duration: 209  }, 
-    { src: "cancion5.mp3", title: "SKY-HI  JUST BREATHE feat. 3RACHA of Stray Kids (Prod. UTA)", duration: 270 }, 
+    { src: "cancion5.mp3", title: "SKY-HI  JUST BREATHE feat. 3RACHA of Stray Kids (Prod. UTA)", duration: 226 }, 
     { src: "cancion6.mp3", title: "Hanamonogatari - Pony Tail", duration: 158  },
 { src: "cancion7.mp3", title: "L'Arc-en-Ciel - Blurry Eyes", duration: 260 }, 
     { src: "cancion8.mp3", title: "Kensuke Ushio - The door", duration: 134 }, 
@@ -21,10 +19,11 @@ const ORIGINAL_PLAYLIST = [
     { src: "cancion11.mp3", title: "Togenashi Togeari - Bleeding Hearts ", duration: 255 }, 
     { src: "cancion12.mp3", title: "One OK Rock - Take Me To The Top", duration: 195 },
 { src: "cancion13.mp3", title: "4s4ki - 許", duration: 176 },
-{ src: "cancion14.mp3", title: "フールフールフール feat. Ado (fool,fool,fool)", duration: 191 }
+{ src: "cancion14.mp3", title: "フールフールフール feat. Ado (fool,fool,fool)", duration: 191 },
+{ src: "cancion15.mp3", title: "Mili - String Theocracy", duration: 175 }
 ];
 
-// Calcular la duración total de la playlist en segundos
+
 const TOTAL_PLAYLIST_DURATION = ORIGINAL_PLAYLIST.reduce((acc, song) => acc + song.duration, 0);
 
 // Función generadora de números pseudoaleatorios basados en una semilla (Algoritmo LCG)
@@ -46,7 +45,6 @@ function shufflePlaylist(playlist, seed) {
     return shuffled;
 }
 
-// Determinar fecha final del countdown
 let targetDate;
 if (TEST_MODE) {
     targetDate = new Date().getTime() + (TEST_SECONDS * 1000);
@@ -111,7 +109,6 @@ function syncPlaylist() {
     music.currentTime = startOffset;
 }
 
-// Al finalizar una canción, recalculamos para pasar a la siguiente de la lista mezclada
 music.addEventListener('ended', () => {
     syncPlaylist();
     music.play().catch(err => console.log("Error al reproducir la siguiente canción", err));
@@ -199,7 +196,7 @@ function startBalloonRain() {
 
         setTimeout(() => {
             balloon.remove();
-        }, randomDuration * 1000);
+        }, randomDuration * 100000);
     }, 300);
 
     setTimeout(() => {
