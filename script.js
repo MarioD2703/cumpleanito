@@ -1,9 +1,10 @@
 // CONFIGURACIÓN
-const TEST_MODE = true; // Cambia a 'false' cuando lo subas a producción.
-const TEST_SECONDS = 600; // Duración del test en segundos.
+const TEST_MODE = false; // ¡Cambiado a false para activar la cuenta regresiva real!
+const TEST_SECONDS = 10; 
 
-// Fecha real del evento (Úsala cuando TEST_MODE sea false)
-const REAL_TARGET_DATE = new Date("December 31, 2026 23:59:59").getTime();
+// Fecha real del evento: 00:00:00 en zona horaria GMT-5 (Hora de Perú/Colombia/Ecuador)
+// Formato ISO 8601 con el desplazamiento "-05:00" para asegurar la sincronía exacta.
+const REAL_TARGET_DATE = new Date("2026-07-18T00:00:00-05:00").getTime();
 
 // Playlist original (Pon aquí tus archivos .mp3, nombres y duraciones exactas en segundos)
 const ORIGINAL_PLAYLIST = [
@@ -19,7 +20,8 @@ const ORIGINAL_PLAYLIST = [
   { src: "cancion10.mp3", title: "天樂 feat. 鏡音リン", duration: 276 }, 
     { src: "cancion11.mp3", title: "Togenashi Togeari - Bleeding Hearts ", duration: 255 }, 
     { src: "cancion12.mp3", title: "One OK Rock - Take Me To The Top", duration: 195 },
-{ src: "cancion13.mp3", title: "4s4ki - 許", duration: 176 }
+{ src: "cancion13.mp3", title: "4s4ki - 許", duration: 176 },
+{ src: "cancion14.mp3", title: "フールフールフール feat. Ado (fool,fool,fool)", duration: 191 }
 ];
 
 // Calcular la duración total de la playlist en segundos
@@ -55,13 +57,7 @@ if (TEST_MODE) {
 const music = document.getElementById("background-music");
 
 // Configurar el volumen a nivel medio (0.5 es el 50%)
-music.volume = 0.1; 
-
-// Refuerzo de bucle por código: si el audio termina, se fuerza su reinicio y reproducción
-music.addEventListener('ended', function() {
-    this.currentTime = 0;
-    this.play();
-}, false);
+music.volume = 0.2;
 
 // Sincronizar la playlist aleatoria basándose en el tiempo global Unix
 function syncPlaylist() {

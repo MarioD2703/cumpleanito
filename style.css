@@ -1,9 +1,21 @@
-/* Variables para personalizar fácilmente */
+/* Variables de color independientes */
 :root {
     --bg-color: #121214; /* Color de fondo base detrás del video */
-    --accent-color: #ff477e; /* Color rosa/fucsia para el contador y botón */
     --text-color: #ffffff;
-    --card-bg: rgba(18, 18, 20, 0.75); /* Tarjeta oscura translúcida para contrastar sobre el video */
+    --card-bg: rgba(18, 18, 20, 0.75); /* Tarjeta oscura translúcida */
+    
+    /* Color del contador (reloj) */
+    --countdown-color: #ff477e; 
+
+    /* Colores del Botón 1 (Carta) */
+    --btn-carta-start: #d80d4a;
+    --btn-carta-end: #9d1f45;
+    --btn-carta-shadow: rgba(255, 71, 126, 0.4);
+
+    /* Colores del Botón 2 (Recuerdos) */
+    --btn-recuerdos-start: #2399b0;
+    --btn-recuerdos-end: #177383;
+    --btn-recuerdos-shadow: rgba(72, 202, 228, 0.4);
 }
 
 * {
@@ -78,10 +90,11 @@ h1 {
     align-items: center;
 }
 
+/* Reloj Minimalista - Ahora usa su propia variable */
 .time-block span {
     font-size: 3rem;
     font-weight: 700;
-    color: var(--accent-color);
+    color: var(--countdown-color); /* Color independiente */
 }
 
 .time-block p {
@@ -105,37 +118,36 @@ h1 {
     margin-top: 1rem;
 }
 
-/* Botón base (Carta) */
+/* Botón 1 (Carta) - Usa sus propias variables */
 .magic-button {
     display: inline-block;
     padding: 15px 40px;
-    background: linear-gradient(45deg, var(--accent-color), #ff7096);
+    background: linear-gradient(45deg, var(--btn-carta-start), var(--btn-carta-end));
     color: white;
     text-decoration: none;
     font-weight: 600;
     font-size: 1.2rem;
     border-radius: 50px;
-    box-shadow: 0 0 20px rgba(255, 71, 126, 0.4);
+    box-shadow: 0 0 20px var(--btn-carta-shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     animation: bounceIn 1s forwards;
-    min-width: 180px; /* Asegura que ambos tengan un tamaño similar */
+    min-width: 180px;
     text-align: center;
 }
 
-/* Segundo botón con un tono de color diferente (Recuerdos) */
+/* Botón 2 (Recuerdos) - Usa sus propias variables independientes */
 .magic-button.alt-button {
-    background: linear-gradient(45deg, #48cae4, #90e0ef);
-    box-shadow: 0 0 20px rgba(72, 202, 228, 0.4);
+    background: linear-gradient(45deg, var(--btn-recuerdos-start), var(--btn-recuerdos-end));
+    box-shadow: 0 0 20px var(--btn-recuerdos-shadow);
 }
 
-/* Efectos de hover para ambos */
 .magic-button:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 30px rgba(255, 71, 126, 0.8);
+    box-shadow: 0 0 30px var(--btn-carta-start);
 }
 
 .magic-button.alt-button:hover {
-    box-shadow: 0 0 30px rgba(72, 202, 228, 0.8);
+    box-shadow: 0 0 30px var(--btn-recuerdos-start);
 }
 
 /* Animación de entrada de los botones */
