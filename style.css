@@ -3,7 +3,6 @@
     --text-color: #ffffff;
     --card-bg: rgba(18, 18, 20, 0.75); 
     
-  
     --countdown-color: #ff477e; 
 
     --btn-carta-start: #d80d4a;
@@ -13,6 +12,11 @@
     --btn-recuerdos-start: #2399b0;
     --btn-recuerdos-end: #177383;
     --btn-recuerdos-shadow: rgba(72, 202, 228, 0.4);
+
+    /* Colores del Botón 3 (Sorpresita) */
+    --btn-third-start: #ffd166;
+    --btn-third-end: #f4a261;
+    --btn-third-shadow: rgba(255, 209, 102, 0.4);
 }
 
 * {
@@ -48,7 +52,6 @@ body {
     pointer-events: none; 
 }
 
-
 .card-container {
     position: relative;
     z-index: 10; 
@@ -72,7 +75,6 @@ h1 {
     letter-spacing: 1px;
 }
 
-
 .countdown-grid {
     display: flex;
     justify-content: space-around;
@@ -85,7 +87,6 @@ h1 {
     flex-direction: column;
     align-items: center;
 }
-
 
 .time-block span {
     font-size: 3rem;
@@ -100,20 +101,18 @@ h1 {
     opacity: 0.7;
 }
 
-
 .hidden {
     display: none !important;
 }
 
-
 .buttons-wrapper {
     display: flex;
     justify-content: center;
-    gap: 20px; 
+    gap: 15px; 
     flex-wrap: wrap; 
-    margin-top: 1rem;
+    max-width: 450px;
+    margin: 1rem auto 0 auto;
 }
-
 
 .magic-button {
     display: inline-block;
@@ -136,6 +135,14 @@ h1 {
     box-shadow: 0 0 20px var(--btn-recuerdos-shadow);
 }
 
+/* Estilo único para el Tercer Botón posicionado abajo y al centro */
+.magic-button.third-button {
+    background: linear-gradient(45deg, var(--btn-third-start), var(--btn-third-end));
+    box-shadow: 0 0 20px var(--btn-third-shadow);
+    flex-basis: 100%;
+    max-width: 200px;
+}
+
 .magic-button:hover {
     transform: scale(1.05);
     box-shadow: 0 0 30px var(--btn-carta-start);
@@ -143,6 +150,10 @@ h1 {
 
 .magic-button.alt-button:hover {
     box-shadow: 0 0 30px var(--btn-recuerdos-start);
+}
+
+.magic-button.third-button:hover {
+    box-shadow: 0 0 30px var(--btn-third-start);
 }
 
 @keyframes bounceIn {
@@ -195,7 +206,6 @@ h1 {
     }
 }
 
-/* Indicador flotante de audio */
 .audio-banner {
     position: fixed;
     top: 20px;
@@ -227,7 +237,6 @@ h1 {
     50% { transform: scale(1.2); }
 }
 
-
 .audio-banner.fade-out {
     opacity: 0;
     transform: translateY(-20px);
@@ -250,13 +259,11 @@ h1 {
         opacity: 1;
     }
     100% {
-        /* Las variables --tx y --ty se calcularán dinámicamente en JS para dar direcciones aleatorias */
         transform: translate(var(--tx), var(--ty)) scale(0);
         opacity: 0;
     }
 }
 
-/* Widget del reproductor de música (Ajustado para que no sobre espacio de más) */
 .music-player-widget {
     display: flex;
     align-items: center;
@@ -264,10 +271,10 @@ h1 {
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 8px 15px;
     border-radius: 30px;
-    margin: 1.5rem auto 0.5rem auto; /* Centrado y con márgenes más ajustados */
+    margin: 1.5rem auto 0.5rem auto;
     gap: 12px;
     overflow: hidden;
-    max-width: 280px; /* Ancho máximo reducido para evitar espacios vacíos gigantes */
+    max-width: 280px;
     width: 100%;
 }
 
@@ -276,7 +283,6 @@ h1 {
     animation: bounceIcon 2s infinite ease-in-out;
 }
 
-/* Contenedor del título con ancho fijo para que actúe de máscara */
 .track-info-container {
     flex: 1;
     overflow: hidden;
@@ -284,18 +290,16 @@ h1 {
     white-space: nowrap;
 }
 
-/* Efecto Marquee (Texto en movimiento) */
 .track-title-scroll {
     display: inline-block;
-    font-size: 0.8rem; /* Un poco más pequeña y sutil */
+    font-size: 0.8rem;
     font-weight: 500;
     letter-spacing: 0.5px;
     padding-left: 100%;
-    animation: marquee 12s linear infinite; /* Un poco más rápido al ser más corto el ancho */
+    animation: marquee 12s linear infinite;
     opacity: 0.9;
 }
 
-/* Estilos para el aviso de Siguiente Canción */
 .next-track-info {
     font-size: 0.75rem;
     color: rgba(255, 255, 255, 0.5);
@@ -306,15 +310,11 @@ h1 {
 }
 
 #next-track-title {
-    color: var(--accent-color); /* Resalta el título con el color principal */
+    color: var(--btn-recuerdos-start);
     font-weight: 500;
 }
 
 @keyframes marquee {
-    0% {
-        transform: translate3d(0, 0, 0);
-    }
-    100% {
-        transform: translate3d(-100%, 0, 0); /* Lo desplaza por completo hacia la izquierda */
-    }
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-100%, 0, 0); }
 }
