@@ -1,5 +1,5 @@
 // CONFIGURACIÓN
-const TEST_MODE = true; 
+const TEST_MODE = false; 
 const TEST_SECONDS = 10; 
 
 
