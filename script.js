@@ -1,5 +1,5 @@
 // CONFIGURACIÓN
-const TEST_MODE = false; 
+const TEST_MODE = true; 
 const TEST_SECONDS = 10; 
 
 
@@ -196,12 +196,9 @@ function startBalloonRain() {
 
         setTimeout(() => {
             balloon.remove();
-        }, randomDuration * 100000);
+        }, randomDuration * 1000);
     }, 300);
 
-    setTimeout(() => {
-        clearInterval(rainInterval);
-    }, 15000);
 }
 
 // EVENTO GLOBAL DE CLICS PARA GENERAR CHISPITAS
